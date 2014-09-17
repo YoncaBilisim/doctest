@@ -70,8 +70,7 @@ public abstract class LogicDocTest {
      * </p>
      * <strong>IMPORTANT</strong>: you don't have to care about the case of the cookies name
      *
-     *
-     * @return
+     * 
      */
     public List<String> cookiesToShow = new ArrayList<String>();
 
@@ -86,7 +85,6 @@ public abstract class LogicDocTest {
      * <strong>IMPORTANT</strong>: you don't have to care about the case of the headers name
      *
      *
-     * @return
      */
     public List<String> headersToShow = new ArrayList<String>();
 
@@ -392,6 +390,7 @@ public abstract class LogicDocTest {
      *
      * @param expected POJO
      * @param result POJO
+     * @param exceptions
      */
 
     public void assertJsonEqualsAndSay(Object expected, Object result, List<String> exceptions) {
@@ -549,20 +548,21 @@ public abstract class LogicDocTest {
     
     /**
      * build an URI and document parameters
-     * @param uriTemplate like "http://example.com/ws/{param1}/{param2}"
+     * @param host like "http://example.com"
+     * @param uriTemplate like "/ws/{param1}/{param2}"
      * @param parameters parameter list for uriTemplate
      * @param docs document list for uriTemplate
      * @return
      * @throws URISyntaxException
      * @throws Exception 
      */
-    public URI buildURI(String uriTemplate, Map<String, String> parameters, Map<String, String> docs) throws URISyntaxException, Exception {
+    public URI buildURI(String host, String uriTemplate, Map<String, String> parameters, Map<String, String> docs) throws URISyntaxException, Exception {
         docTestMachine.describeUri(uriTemplate, parameters, docs);
         for (Map.Entry<String, String> entrySet : parameters.entrySet()) {
             String key = entrySet.getKey();
             String value = entrySet.getValue();
             uriTemplate = uriTemplate.replace("{" + key + "}", value);
         }
-        return new URI(uriTemplate);
+        return new URI(host + uriTemplate);
     }
 }
