@@ -27,6 +27,7 @@ import com.devbliss.doctest.items.TextDocItem;
 
 import de.devbliss.apitester.ApiRequest;
 import de.devbliss.apitester.ApiResponse;
+import java.util.Map;
 
 /**
  * The {@link DocTestMachine} offers method to generate a report. <code>
@@ -121,7 +122,18 @@ public interface DocTestMachine {
      * Writes a new {@link ResponseDocItem} into the report.
      * 
      * @param response
+     * @param headersToShow 
      * @throws Exception
      */
     void sayResponse(ApiResponse response, List<String> headersToShow) throws Exception;
+
+    /**
+     * Writes a uri description into the report.
+     * 
+     * @param docs 
+     * @param params 
+     * @param template 
+     * @throws Exception
+     */
+    void describeUri(String template, Map<String, String> params, Map<String, String> docs) throws Exception;
 }

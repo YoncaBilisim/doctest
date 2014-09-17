@@ -28,6 +28,7 @@ import com.devbliss.doctest.items.RequestUploadDocItem;
 import com.devbliss.doctest.items.ResponseDocItem;
 import com.devbliss.doctest.items.SectionDocItem;
 import com.devbliss.doctest.items.TextDocItem;
+import com.devbliss.doctest.items.URITemplateDocItem;
 import com.devbliss.doctest.renderer.ReportRenderer;
 import com.devbliss.doctest.utils.FilterHelper;
 import com.devbliss.doctest.utils.JSONHelper;
@@ -36,6 +37,7 @@ import com.google.inject.Inject;
 
 import de.devbliss.apitester.ApiRequest;
 import de.devbliss.apitester.ApiResponse;
+import java.util.Map;
 
 /**
  * Default implementation of {@link DocTestMachine}.
@@ -197,5 +199,10 @@ public class DocTestMachineImpl implements DocTestMachine {
     @Override
     public void say(String say, String[] strings) {
         listItem.add(new MultipleTextDocItem(say, strings));
+    }
+
+    @Override
+    public void describeUri(String template, Map<String, String> params, Map<String, String> docs) throws Exception {
+        listItem.add(new URITemplateDocItem(template, params, docs));
     }
 }

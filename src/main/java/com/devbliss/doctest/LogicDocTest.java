@@ -43,6 +43,7 @@ import de.devbliss.apitester.ApiResponse;
 import de.devbliss.apitester.ApiTest;
 import de.devbliss.apitester.Context;
 import de.devbliss.apitester.Cookie;
+import java.net.URISyntaxException;
 
 public abstract class LogicDocTest {
 
@@ -544,5 +545,24 @@ public abstract class LogicDocTest {
      */
     public Configuration getConfiguration() {
         return configuration;
+    }
+    
+    /**
+     * build an URI and document parameters
+     * @param uriTemplate like "http://example.com/ws/{param1}/{param2}"
+     * @param parameters parameter list for uriTemplate
+     * @param docs document list for uriTemplate
+     * @return
+     * @throws URISyntaxException
+     * @throws Exception 
+     */
+    public URI buildURI(String uriTemplate, Map<String, String> parameters, Map<String, String> docs) throws URISyntaxException, Exception {
+        docTestMachine.describeUri(uriTemplate, parameters, docs);
+        for (Map.Entry<String, String> entrySet : parameters.entrySet()) {
+            String key = entrySet.getKey();
+            String value = entrySet.getValue();
+            uriTemplate = uriTemplate.replace("{" + key + "}", value);
+        }
+        return new URI(uriTemplate);
     }
 }
