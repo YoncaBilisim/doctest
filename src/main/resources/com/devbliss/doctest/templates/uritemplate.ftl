@@ -12,9 +12,7 @@
   the License.
  #-->
 <pre>
-	<code>
 ${uriTemplate}
-	</code>
 </pre>
 <table border="1">
 <tr><th>Parameter</th><th>Description</th><th>example value</th></tr>
@@ -27,7 +25,5 @@ ${uriTemplate}
 </#list>
 </table>
 <pre>
-	<code>
 ${uri}
-	</code>
 </pre>
