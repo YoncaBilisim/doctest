@@ -49,8 +49,8 @@ public class FileHelper {
      * This could cause a StackOverflowException, but I cannot
      * think of any real case where this happens...
      * 
-     * @param nameOfFile
-     * @throws InvalidReportException
+     * @param nameCompletePath 
+     * @param finalDoc  
      */
     public void writeFile(String nameCompletePath, String finalDoc) {
         // make sure the directory exists
