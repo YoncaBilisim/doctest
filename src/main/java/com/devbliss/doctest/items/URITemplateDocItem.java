@@ -15,7 +15,6 @@
  */
 package com.devbliss.doctest.items;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
