@@ -2,6 +2,11 @@
 
 develop
 -------
+ - Removed reference to CloudBees build status
+
+Version 0.9.0 29.09.2014
+------------------------
+ - Doctest HTML output directory configurable with system properties
 
 Version 0.8.0 15.09.2014
 ------------------------
