@@ -138,7 +138,7 @@ public class LogicDocTestUnitTest {
     public void makeGetRequest() throws Exception {
         when(apiTest.get(uri, null)).thenReturn(context);
         docTest.makeGetRequest(uri);
-        verify(docTestMachine).sayRequest(request, null, myHeadersToShow, myCookiesToShow);
+        verify(docTestMachine).sayRequest(request, null, myHeadersToShow, myCookiesToShow, null);
         verify(docTestMachine).sayResponse(response, myHeadersToShow, null);
     }
 
@@ -154,7 +154,7 @@ public class LogicDocTestUnitTest {
     public void makeDeleteRequest() throws Exception {
         when(apiTest.delete(uri, null, null)).thenReturn(context);
         docTest.makeDeleteRequest(uri);
-        verify(docTestMachine).sayRequest(request, NULL, myHeadersToShow, myCookiesToShow);
+        verify(docTestMachine).sayRequest(request, NULL, myHeadersToShow, myCookiesToShow, null);
         verify(docTestMachine).sayResponse(response, myHeadersToShow, null);
     }
 
@@ -162,7 +162,7 @@ public class LogicDocTestUnitTest {
     public void makeDeleteRequestWithBody() throws Exception {
         when(apiTest.delete(uri, obj, null)).thenReturn(context);
         docTest.makeDeleteRequest(uri, obj);
-        verify(docTestMachine).sayRequest(request, OBJECT, myHeadersToShow, myCookiesToShow);
+        verify(docTestMachine).sayRequest(request, OBJECT, myHeadersToShow, myCookiesToShow, null);
         verify(docTestMachine).sayResponse(response, myHeadersToShow, null);
     }
 
@@ -177,15 +177,15 @@ public class LogicDocTestUnitTest {
     public void makePostRequest() throws Exception {
         when(apiTest.post(uri, null, null)).thenReturn(context);
         docTest.makePostRequest(uri);
-        verify(docTestMachine).sayRequest(request, NULL, myHeadersToShow, myCookiesToShow);
+        verify(docTestMachine).sayRequest(request, NULL, myHeadersToShow, myCookiesToShow, null);
         verify(docTestMachine).sayResponse(response, myHeadersToShow, null);
     }
 
     @Test
     public void makePostRequestWithBody() throws Exception {
         when(apiTest.post(uri, obj, null)).thenReturn(context);
-        docTest.makePostRequest(uri, obj);
-        verify(docTestMachine).sayRequest(request, OBJECT, myHeadersToShow, myCookiesToShow);
+        docTest.makePostRequest(uri, obj, null, null);
+        verify(docTestMachine).sayRequest(request, OBJECT, myHeadersToShow, myCookiesToShow, null);
         verify(docTestMachine).sayResponse(response, myHeadersToShow, null);
     }
 
@@ -221,7 +221,7 @@ public class LogicDocTestUnitTest {
     public void makePutRequest() throws Exception {
         when(apiTest.put(uri, null, null)).thenReturn(context);
         docTest.makePutRequest(uri);
-        verify(docTestMachine).sayRequest(request, NULL, myHeadersToShow, myCookiesToShow);
+        verify(docTestMachine).sayRequest(request, NULL, myHeadersToShow, myCookiesToShow, null);
         verify(docTestMachine).sayResponse(response, myHeadersToShow, null);
     }
 
@@ -229,7 +229,7 @@ public class LogicDocTestUnitTest {
     public void makePutRequestWithBody() throws Exception {
         when(apiTest.put(uri, obj, null)).thenReturn(context);
         docTest.makePutRequest(uri, obj);
-        verify(docTestMachine).sayRequest(request, OBJECT, myHeadersToShow, myCookiesToShow);
+        verify(docTestMachine).sayRequest(request, OBJECT, myHeadersToShow, myCookiesToShow, null);
         verify(docTestMachine).sayResponse(response, myHeadersToShow, null);
     }
 
@@ -244,7 +244,7 @@ public class LogicDocTestUnitTest {
     public void makePatchRequest() throws Exception {
         when(apiTest.patch(uri, null, null)).thenReturn(context);
         docTest.makePatchRequest(uri);
-        verify(docTestMachine).sayRequest(request, NULL, myHeadersToShow, myCookiesToShow);
+        verify(docTestMachine).sayRequest(request, NULL, myHeadersToShow, myCookiesToShow, null);
         verify(docTestMachine).sayResponse(response, myHeadersToShow, null);
     }
 
@@ -252,7 +252,7 @@ public class LogicDocTestUnitTest {
     public void makePatchRequestWithBody() throws Exception {
         when(apiTest.patch(uri, obj, null)).thenReturn(context);
         docTest.makePatchRequest(uri, obj);
-        verify(docTestMachine).sayRequest(request, OBJECT, myHeadersToShow, myCookiesToShow);
+        verify(docTestMachine).sayRequest(request, OBJECT, myHeadersToShow, myCookiesToShow, null);
         verify(docTestMachine).sayResponse(response, myHeadersToShow, null);
     }
 

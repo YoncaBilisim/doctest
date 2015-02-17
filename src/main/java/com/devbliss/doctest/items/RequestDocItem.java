@@ -24,13 +24,16 @@ public class RequestDocItem implements DocItem {
     protected Boolean isAnUploadRequest = false;
     protected Map<String, String> headers;
     protected Map<String, String> cookies;
+    protected Map<String, String> docs;
 
     public RequestDocItem(
             String http,
             String uri,
             Map<String, String> headers,
-            Map<String, String> cookies) {
-        this(http, uri, new JsonDocItem(null), headers, cookies);
+            Map<String, String> cookies,
+            Map<String, String> docs
+            ) {
+        this(http, uri, new JsonDocItem(null), headers, cookies, docs);
     }
 
     public RequestDocItem(
@@ -38,8 +41,9 @@ public class RequestDocItem implements DocItem {
             String uri,
             String payload,
             Map<String, String> headers,
-            Map<String, String> cookies) {
-        this(http, uri, new JsonDocItem(payload), headers, cookies);
+            Map<String, String> cookies,
+            Map<String, String> docs) {
+        this(http, uri, new JsonDocItem(payload), headers, cookies, docs);
     }
 
     private RequestDocItem(
@@ -47,12 +51,14 @@ public class RequestDocItem implements DocItem {
             String uri,
             JsonDocItem payload,
             Map<String, String> headers,
-            Map<String, String> cookies) {
+            Map<String, String> cookies,
+            Map<String, String> docs) {
         this.http = http;
         this.uri = uri;
         this.payload = payload;
         this.headers = headers;
         this.cookies = cookies;
+        this.docs = docs;
     }
 
     public String getHttp() {
@@ -71,6 +77,7 @@ public class RequestDocItem implements DocItem {
         return isAnUploadRequest;
     }
 
+    @Override
     public String getItemName() {
         return "request";
     }
@@ -81,5 +88,9 @@ public class RequestDocItem implements DocItem {
 
     public Map<String, String> getCookies() {
         return this.cookies;
+    }
+
+    public Map<String, String> getDocs() {
+        return docs;
     }
 }

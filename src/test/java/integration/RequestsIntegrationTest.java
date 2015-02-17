@@ -166,7 +166,7 @@ public class RequestsIntegrationTest extends DocTest {
         when(API.post(uri, obj, null)).thenReturn(context);
 
         sayNextSection("Making a post request");
-        ApiResponse response = makePostRequest(uri, obj);
+        ApiResponse response = makePostRequest(uri, obj, null, null);
 
         assertEqualsAndSay(HttpStatus.SC_CREATED, response.httpStatus, HTTP_TEXT);
         assertEqualsAndSay(PAYLOAD_OBJECT, response.payload, JSON_TEXT);

@@ -41,7 +41,7 @@ public class RequestUploadDocItemTest {
     public void doNotshowFileBody() {
         RequestUploadDocItem item =
                 new RequestUploadDocItem("post", uri, fileName, fileBody, fileSize,
-                        "application/octet-stream", headers, cookies);
+                        "application/octet-stream", headers, cookies, null);
         assertFalse(item.getShowFileBody());
     }
 
@@ -49,7 +49,7 @@ public class RequestUploadDocItemTest {
     public void showFileBody() {
         RequestUploadDocItem item =
                 new RequestUploadDocItem("post", uri, fileName, fileBody, fileSize, "text/plain",
-                        headers, cookies);
+                        headers, cookies, null);
         assertTrue(item.getShowFileBody());
     }
 }

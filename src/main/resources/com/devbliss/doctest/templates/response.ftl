@@ -12,10 +12,9 @@
   the License.
  #-->
 <div class="box">
-	<span class="headline">Response Document</span>
 
 <#if docs?? && docs?has_content>
-<li>ResponseCode: ${responseCode}</li>
+<span class="headline">Response Document</span>
 <table border="1">
 <tr><th>Attribute</th><th>Description</th></tr>
 <#list docs?keys as key>

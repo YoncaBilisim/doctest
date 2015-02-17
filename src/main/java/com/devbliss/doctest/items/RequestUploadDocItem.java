@@ -36,8 +36,9 @@ public class RequestUploadDocItem extends RequestDocItem {
             long fileSize,
             String mimeType,
             Map<String, String> headersToShow,
-            Map<String, String> cookies) {
-        super(http, uri, headersToShow, cookies);
+            Map<String, String> cookies,
+            Map<String, String> requestDocs) {
+        super(http, uri, headersToShow, cookies, requestDocs);
         this.fileName = fileName;
         this.fileBody = fileBody;
         this.isAnUploadRequest = true;

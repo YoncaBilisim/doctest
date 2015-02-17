@@ -12,6 +12,22 @@
   the License.
  #-->
 <div class="box">
+
+
+
+<#if docs?? && docs?has_content>
+<span class="headline">Request Document</span>
+<table border="1">
+<tr><th>Attribute</th><th>Description</th></tr>
+<#list docs?keys as key>
+<tr>
+    <td>${key}</td>
+    <td>${docs[key]}</td>
+</tr>
+</#list>
+</table>
+</#if>
+
 	<span class="headline">		
 		<#if isAnUploadRequest>
 			Upload-Request

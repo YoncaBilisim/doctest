@@ -92,13 +92,15 @@ public interface DocTestMachine {
     /**
      * Writes a new {@link RequestDocItem} into the report.
      * 
-     * @param uri
+     * @param apiRequest
      * @param payload
-     * @param httpRequest
+     * @param headersToShow
+     * @param cookiesToShow 
+     * @param requestDocs 
      * @throws JSONException
      */
     void sayRequest(ApiRequest apiRequest, String payload, List<String> headersToShow,
-            List<String> cookiesToShow) throws JSONException;
+            List<String> cookiesToShow, Map<String, String> requestDocs) throws JSONException;
 
     /**
      * Writes a new {@link AssertDocItem} into the report.

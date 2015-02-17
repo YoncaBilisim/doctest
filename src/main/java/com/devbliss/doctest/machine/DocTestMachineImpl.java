@@ -123,13 +123,13 @@ public class DocTestMachineImpl implements DocTestMachine {
      */
     @Override
     public void sayRequest(ApiRequest apiRequest, String payload, List<String> headersToShow,
-            List<String> cookiesToShow) throws JSONException {
+            List<String> cookiesToShow, Map<String, String> requestDocs) throws JSONException {
 
         if (apiRequest.uri != null) {
             listItem.add(new RequestDocItem(apiRequest.httpMethod, uriHelper
                     .uriToString(apiRequest.uri), validateAndPrettifyPayload(apiRequest.getHeader("Content-Type"), payload), filterHelper
                     .filterMap(apiRequest.headers, headersToShow), filterHelper.filterMap(
-                    apiRequest.cookies, cookiesToShow)));
+                    apiRequest.cookies, cookiesToShow), requestDocs));
         }
     }
 
@@ -145,7 +145,7 @@ public class DocTestMachineImpl implements DocTestMachine {
             listItem.add(new RequestUploadDocItem(apiRequest.httpMethod, uriHelper
                     .uriToString(apiRequest.uri), fileName, fileBody, size, mimeType, filterHelper
                     .filterMap(apiRequest.headers, headersToShow), filterHelper.filterMap(
-                    apiRequest.cookies, cookiesToShow)));
+                    apiRequest.cookies, cookiesToShow), null));
         }
     }
 

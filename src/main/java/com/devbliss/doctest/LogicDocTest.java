@@ -159,12 +159,12 @@ public abstract class LogicDocTest {
         docTestMachine.sayNextSectionTitle(sectionName);
     }
 
-    private void sayRequest(ApiRequest apiRequest, Object obj) throws Exception {
-        docTestMachine.sayRequest(apiRequest, jsonHelper.toJson(obj), headersToShow, cookiesToShow);
+    private void sayRequest(ApiRequest apiRequest, Object obj, Map<String, String> requestDocs) throws Exception {
+        docTestMachine.sayRequest(apiRequest, jsonHelper.toJson(obj), headersToShow, cookiesToShow, requestDocs);
     }
 
     private void sayRequest(ApiRequest apiRequest) throws Exception {
-        docTestMachine.sayRequest(apiRequest, null, headersToShow, cookiesToShow);
+        docTestMachine.sayRequest(apiRequest, null, headersToShow, cookiesToShow, null);
     }
 
     /**
@@ -225,21 +225,21 @@ public abstract class LogicDocTest {
     }
 
     public ApiResponse makePostRequest(URI uri) throws Exception {
-        return makePostRequest(uri, null, null, null);
+        return makePostRequest(uri, null, null, null, null);
     }
 
-    public ApiResponse makePostRequest(URI uri, Object payload) throws Exception {
-      return makePostRequest(uri, payload, null, null);
+    public ApiResponse makePostRequest(URI uri, Object payload, Map<String, String> responseDocs, Map<String, String> requestDocs) throws Exception {
+      return makePostRequest(uri, payload, null, responseDocs, requestDocs);
     }
 
     public ApiResponse makePostRequest(URI uri, Map<String, String> additionalHeaders) throws Exception {
-      return makePostRequest(uri, null, additionalHeaders, null);
+      return makePostRequest(uri, null, additionalHeaders, null, null);
   }
 
-    public ApiResponse makePostRequest(URI uri, Object payload, Map<String, String> additionalHeaders, Map<String, String> docs) throws Exception {
+    public ApiResponse makePostRequest(URI uri, Object payload, Map<String, String> additionalHeaders, Map<String, String> responseDocs, Map<String, String> requestDocs) throws Exception {
         Context context = doPostRequest(uri, payload, additionalHeaders);
-        sayRequest(context.apiRequest, payload);
-        docTestMachine.sayResponse(context.apiResponse, headersToShow, docs);
+        sayRequest(context.apiRequest, payload, requestDocs);
+        docTestMachine.sayResponse(context.apiResponse, headersToShow, responseDocs);
         return context.apiResponse;
     }
 
@@ -292,7 +292,7 @@ public abstract class LogicDocTest {
 
     public ApiResponse makePutRequest(URI uri, Object obj, Map<String, String> additionalHeaders) throws Exception {
         Context context = doPutRequest(uri, obj, additionalHeaders);
-        sayRequest(context.apiRequest, obj);
+        sayRequest(context.apiRequest, obj, null);
         docTestMachine.sayResponse(context.apiResponse, headersToShow, null);
         return context.apiResponse;
     }
@@ -323,7 +323,7 @@ public abstract class LogicDocTest {
 
     public ApiResponse makePatchRequest(URI uri, Object obj, Map<String, String> additionalHeaders) throws Exception {
         Context context = doPatchRequest(uri, obj, additionalHeaders);
-        sayRequest(context.apiRequest, obj);
+        sayRequest(context.apiRequest, obj, null);
         docTestMachine.sayResponse(context.apiResponse, headersToShow, null);
         return context.apiResponse;
     }
@@ -354,7 +354,7 @@ public abstract class LogicDocTest {
 
     public ApiResponse makeDeleteRequest(URI uri, Object obj, Map<String, String> additionalHeaders) throws Exception {
         Context context = doDeleteRequest(uri, obj, additionalHeaders);
-        sayRequest(context.apiRequest, obj);
+        sayRequest(context.apiRequest, obj, null);
         docTestMachine.sayResponse(context.apiResponse, headersToShow, null);
         return context.apiResponse;
     }

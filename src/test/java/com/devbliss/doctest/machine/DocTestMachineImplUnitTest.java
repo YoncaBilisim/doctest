@@ -219,7 +219,7 @@ public class DocTestMachineImplUnitTest {
     @Test
     public void addRequestItemWithValidJsonContent() throws Exception {
         machine.beginDoctest(FILE_NAME, INTRODUCTION);
-        machine.sayRequest(apiRequest, JSON_VALID, headersToShow, cookiesToShow);
+        machine.sayRequest(apiRequest, JSON_VALID, headersToShow, cookiesToShow, null);
         machine.endDocTest();
 
         verify(renderer).render(listItemCaptor.capture(), eq(FILE_NAME), eq(INTRODUCTION));
@@ -244,7 +244,7 @@ public class DocTestMachineImplUnitTest {
         apiRequest = new ApiRequest(uri, HTTP_METHOD, headers, cookies);
 
         machine.beginDoctest(FILE_NAME, INTRODUCTION);
-        machine.sayRequest(apiRequest, JSON_VALID, headersToShow, cookiesToShow);
+        machine.sayRequest(apiRequest, JSON_VALID, headersToShow, cookiesToShow, null);
         machine.endDocTest();
 
         verify(renderer).render(listItemCaptor.capture(), eq(FILE_NAME), eq(INTRODUCTION));
@@ -261,7 +261,7 @@ public class DocTestMachineImplUnitTest {
         when(jsonHelper.prettyPrintJson(noJson)).thenReturn(noJson);
 
         machine.beginDoctest(FILE_NAME, INTRODUCTION);
-        machine.sayRequest(apiRequest, noJson, headersToShow, cookiesToShow);
+        machine.sayRequest(apiRequest, noJson, headersToShow, cookiesToShow, null);
         machine.endDocTest();
 
         verify(renderer, times(2)).render(listItemCaptor.capture(), eq(FILE_NAME), eq(INTRODUCTION));
@@ -311,7 +311,7 @@ public class DocTestMachineImplUnitTest {
         apiRequest = new ApiRequest(null, HTTP_METHOD, headers, cookies);
 
         machine.beginDoctest(FILE_NAME, INTRODUCTION);
-        machine.sayRequest(apiRequest, JSON_VALID, headersToShow, cookiesToShow);
+        machine.sayRequest(apiRequest, JSON_VALID, headersToShow, cookiesToShow, null);
         machine.endDocTest();
 
         verify(renderer).render(listItemCaptor.capture(), eq(FILE_NAME), eq(INTRODUCTION));
@@ -323,7 +323,7 @@ public class DocTestMachineImplUnitTest {
     @Test
     public void addRequestItemWihtInvalidJson() throws Exception {
         machine.beginDoctest(FILE_NAME, INTRODUCTION);
-        machine.sayRequest(apiRequest, JSON_INVALID, headersToShow, cookiesToShow);
+        machine.sayRequest(apiRequest, JSON_INVALID, headersToShow, cookiesToShow, null);
         machine.endDocTest();
 
         verify(renderer).render(listItemCaptor.capture(), eq(FILE_NAME), eq(INTRODUCTION));
@@ -358,7 +358,7 @@ public class DocTestMachineImplUnitTest {
         machine.say(TEXT + "_first");
         machine.sayPreformatted(JSON_VALID);
         machine.say(TEXT + "_second");
-        machine.sayRequest(apiRequest, JSON_VALID, headersToShow, cookiesToShow);
+        machine.sayRequest(apiRequest, JSON_VALID, headersToShow, cookiesToShow, null);
         machine.sayResponse(apiResponse, headersToShow, null);
         machine.sayVerify(TEXT);
         machine.sayNextSectionTitle(TEXT);
