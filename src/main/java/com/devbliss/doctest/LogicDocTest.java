@@ -202,13 +202,13 @@ public abstract class LogicDocTest {
     }
 
     public ApiResponse makeGetRequest(URI uri) throws Exception {
-      return makeGetRequest(uri, null);
+      return makeGetRequest(uri, null, null);
     }
 
-    public ApiResponse makeGetRequest(URI uri, Map<String, String> additionalHeaders) throws Exception {
+    public ApiResponse makeGetRequest(URI uri, Map<String, String> additionalHeaders, Map<String, String> docs) throws Exception {
         Context context = doGetRequest(uri, additionalHeaders);
         sayRequest(context.apiRequest);
-        docTestMachine.sayResponse(context.apiResponse, headersToShow);
+        docTestMachine.sayResponse(context.apiResponse, headersToShow, docs);
         return context.apiResponse;
     }
 
@@ -225,21 +225,21 @@ public abstract class LogicDocTest {
     }
 
     public ApiResponse makePostRequest(URI uri) throws Exception {
-        return makePostRequest(uri, null, null);
+        return makePostRequest(uri, null, null, null);
     }
 
     public ApiResponse makePostRequest(URI uri, Object payload) throws Exception {
-      return makePostRequest(uri, payload, null);
+      return makePostRequest(uri, payload, null, null);
     }
 
     public ApiResponse makePostRequest(URI uri, Map<String, String> additionalHeaders) throws Exception {
-      return makePostRequest(uri, null, additionalHeaders);
+      return makePostRequest(uri, null, additionalHeaders, null);
   }
 
-    public ApiResponse makePostRequest(URI uri, Object payload, Map<String, String> additionalHeaders) throws Exception {
+    public ApiResponse makePostRequest(URI uri, Object payload, Map<String, String> additionalHeaders, Map<String, String> docs) throws Exception {
         Context context = doPostRequest(uri, payload, additionalHeaders);
         sayRequest(context.apiRequest, payload);
-        docTestMachine.sayResponse(context.apiResponse, headersToShow);
+        docTestMachine.sayResponse(context.apiResponse, headersToShow, docs);
         return context.apiResponse;
     }
 
@@ -261,7 +261,7 @@ public abstract class LogicDocTest {
                 fileHelper.readFile(fileToUpload), fileToUpload.length(), mimeType, headersToShow,
                 cookiesToShow);
 
-        docTestMachine.sayResponse(context.apiResponse, headersToShow);
+        docTestMachine.sayResponse(context.apiResponse, headersToShow, null);
 
         return context.apiResponse;
     }
@@ -293,7 +293,7 @@ public abstract class LogicDocTest {
     public ApiResponse makePutRequest(URI uri, Object obj, Map<String, String> additionalHeaders) throws Exception {
         Context context = doPutRequest(uri, obj, additionalHeaders);
         sayRequest(context.apiRequest, obj);
-        docTestMachine.sayResponse(context.apiResponse, headersToShow);
+        docTestMachine.sayResponse(context.apiResponse, headersToShow, null);
         return context.apiResponse;
     }
 
@@ -324,7 +324,7 @@ public abstract class LogicDocTest {
     public ApiResponse makePatchRequest(URI uri, Object obj, Map<String, String> additionalHeaders) throws Exception {
         Context context = doPatchRequest(uri, obj, additionalHeaders);
         sayRequest(context.apiRequest, obj);
-        docTestMachine.sayResponse(context.apiResponse, headersToShow);
+        docTestMachine.sayResponse(context.apiResponse, headersToShow, null);
         return context.apiResponse;
     }
 
@@ -355,7 +355,7 @@ public abstract class LogicDocTest {
     public ApiResponse makeDeleteRequest(URI uri, Object obj, Map<String, String> additionalHeaders) throws Exception {
         Context context = doDeleteRequest(uri, obj, additionalHeaders);
         sayRequest(context.apiRequest, obj);
-        docTestMachine.sayResponse(context.apiResponse, headersToShow);
+        docTestMachine.sayResponse(context.apiResponse, headersToShow, null);
         return context.apiResponse;
     }
 
@@ -557,7 +557,7 @@ public abstract class LogicDocTest {
      * @throws Exception 
      */
     public URI buildURI(String host, String uriTemplate, Map<String, String> parameters, Map<String, String> docs) throws URISyntaxException, Exception {
-        docTestMachine.describeUri(uriTemplate, parameters, docs);
+        docTestMachine.sayUri(uriTemplate, parameters, docs);
         for (Map.Entry<String, String> entrySet : parameters.entrySet()) {
             String key = entrySet.getKey();
             String value = entrySet.getValue();

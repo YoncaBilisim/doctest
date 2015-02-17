@@ -166,7 +166,7 @@ public class DocTestMachineImplUnitTest {
     @Test
     public void addResponseItemWithValidJsonContent() throws Exception {
         machine.beginDoctest(FILE_NAME, INTRODUCTION);
-        machine.sayResponse(apiResponse, headersToShow);
+        machine.sayResponse(apiResponse, headersToShow, null);
         machine.endDocTest();
 
         verify(renderer).render(listItemCaptor.capture(), eq(FILE_NAME), eq(INTRODUCTION));
@@ -188,7 +188,7 @@ public class DocTestMachineImplUnitTest {
         apiResponse = new ApiResponse(RESPONSE_CODE, "", JSON_VALID, headers);
 
         machine.beginDoctest(FILE_NAME, INTRODUCTION);
-        machine.sayResponse(apiResponse, headersToShow);
+        machine.sayResponse(apiResponse, headersToShow, null);
         machine.endDocTest();
 
         verify(renderer).render(listItemCaptor.capture(), eq(FILE_NAME), eq(INTRODUCTION));
@@ -205,7 +205,7 @@ public class DocTestMachineImplUnitTest {
         when(jsonHelper.prettyPrintJson(noJson)).thenReturn(noJson);
 
         machine.beginDoctest(FILE_NAME, INTRODUCTION);
-        machine.sayResponse(apiResponse, headersToShow);
+        machine.sayResponse(apiResponse, headersToShow, null);
         machine.endDocTest();
 
         verify(renderer, times(2)).render(listItemCaptor.capture(), eq(FILE_NAME), eq(INTRODUCTION));
@@ -359,7 +359,7 @@ public class DocTestMachineImplUnitTest {
         machine.sayPreformatted(JSON_VALID);
         machine.say(TEXT + "_second");
         machine.sayRequest(apiRequest, JSON_VALID, headersToShow, cookiesToShow);
-        machine.sayResponse(apiResponse, headersToShow);
+        machine.sayResponse(apiResponse, headersToShow, null);
         machine.sayVerify(TEXT);
         machine.sayNextSectionTitle(TEXT);
         machine.endDocTest();

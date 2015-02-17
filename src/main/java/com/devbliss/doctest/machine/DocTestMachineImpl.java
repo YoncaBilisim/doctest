@@ -154,9 +154,9 @@ public class DocTestMachineImpl implements DocTestMachine {
      * and filter the headers from the ApiResponse
      */
     @Override
-    public void sayResponse(ApiResponse response, List<String> headersToShow) throws Exception {
+    public void sayResponse(ApiResponse response, List<String> headersToShow, Map<String, String> docs) throws Exception {
         listItem.add(new ResponseDocItem(response, validateAndPrettifyPayload(response.getHeader("Content-Type"), response.payload),
-                filterHelper.filterMap(response.headers, headersToShow)));
+                filterHelper.filterMap(response.headers, headersToShow), docs));
     }
 
     @Override
@@ -202,7 +202,7 @@ public class DocTestMachineImpl implements DocTestMachine {
     }
 
     @Override
-    public void describeUri(String template, Map<String, String> params, Map<String, String> docs) throws Exception {
+    public void sayUri(String template, Map<String, String> params, Map<String, String> docs) throws Exception {
         listItem.add(new URITemplateDocItem(template, params, docs));
     }
 }

@@ -49,7 +49,7 @@ public interface DocTestMachine {
     /**
      * Begins a report if there is no on-going generation.
      * 
-     * @param className The name of the tested class, which is going to be the name of the file.
+     * @param fileName The name of the tested class, which is going to be the name of the file.
      * @param introduction
      */
     void beginDoctest(String fileName, String introduction);
@@ -123,9 +123,10 @@ public interface DocTestMachine {
      * 
      * @param response
      * @param headersToShow 
+     * @param docs for attributes
      * @throws Exception
      */
-    void sayResponse(ApiResponse response, List<String> headersToShow) throws Exception;
+    void sayResponse(ApiResponse response, List<String> headersToShow, Map<String, String> docs) throws Exception;
 
     /**
      * Writes a uri description into the report.
@@ -135,5 +136,5 @@ public interface DocTestMachine {
      * @param template 
      * @throws Exception
      */
-    void describeUri(String template, Map<String, String> params, Map<String, String> docs) throws Exception;
+    void sayUri(String template, Map<String, String> params, Map<String, String> docs) throws Exception;
 }

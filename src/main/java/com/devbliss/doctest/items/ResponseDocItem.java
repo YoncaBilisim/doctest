@@ -23,11 +23,13 @@ public class ResponseDocItem implements DocItem {
     private final int responseCode;
     private final JsonDocItem payload;
     private final Map<String, String> headers;
+    private final Map<String, String> docs;
 
-    public ResponseDocItem(ApiResponse response, String payload, Map<String, String> headers) {
+    public ResponseDocItem(ApiResponse response, String payload, Map<String, String> headers, Map<String, String> docs) {
         this.responseCode = response.httpStatus;
         this.payload = new JsonDocItem(payload);
         this.headers = headers;
+        this.docs = docs;
     }
 
     public int getResponseCode() {
@@ -38,11 +40,16 @@ public class ResponseDocItem implements DocItem {
         return payload;
     }
 
+    @Override
     public String getItemName() {
         return "response";
     }
 
     public Map<String, String> getHeaders() {
         return this.headers;
+    }
+
+    public Map<String, String> getDocs() {
+        return docs;
     }
 }

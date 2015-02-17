@@ -12,6 +12,21 @@
   the License.
  #-->
 <div class="box">
+	<span class="headline">Response Document</span>
+
+<#if docs?? && docs?has_content>
+<li>ResponseCode: ${responseCode}</li>
+<table border="1">
+<tr><th>Attribute</th><th>Description</th></tr>
+<#list docs?keys as key>
+<tr>
+    <td>${key}</td>
+    <td>${docs[key]}</td>
+</tr>
+</#list>
+</table>
+</#if>
+
 	<span class="headline">Response</span>
 	<ul>
 		<li>ResponseCode: ${responseCode}</li>
@@ -22,7 +37,7 @@
 				<#list headers?keys as header>
 				    <li>
 				        <label>${header} = </label>
-				        <div>${headers[header]}</diuv>
+				        <div>${headers[header]}</div>
 				    </li>
 				</#list>
 				</ol>
